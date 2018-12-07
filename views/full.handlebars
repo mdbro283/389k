@@ -1,0 +1,54 @@
+
+<input type="search" class="form-control" id="search" placeholder="Search Arenas...">
+<div id="data-area">
+  <h2>Arenas</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td><td>City</td><td>State</td><td>Country</td><td>Capacity</td>
+      </tr>
+    </thead>
+    {{#each a}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.city}}</td>
+        <td>{{this.state}}</td>
+        <td>{{this.country}}</td>
+        <td>{{this.capacity}}</td>
+      </tr>
+    {{/each}}
+  </table>
+
+  <h2>Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Arena</td><td>Teams</td><td>Date</td><td>Info</td>
+      </tr>
+    </thead>
+    {{#each e}}
+      <tr>
+        <td>{{this.arenaName}}</td>
+        <<td>{{this.teams}}</td>
+        <td>{{this.date}}</td>
+        <td>{{this.info}}</td>
+      </tr>
+    {{/each}}
+  </table>
+</div>
+<script>
+  $('#search').on('keyup', function(e){
+    $('#data-area').html("");
+    var text = $(this).val();
+    var results = [];
+    var res_html = "";
+    App.a.forEach(function(ar){
+      if(ar.name.substring(0, text.length) == text){
+        results.push(ar);
+        res_html += '<li>' + ar.name + '</li>';
+      }
+    });
+
+    $('#data-area').html('<ol>' + res_html + '</ol>');
+  });
+</script>
