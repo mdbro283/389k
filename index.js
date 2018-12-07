@@ -183,6 +183,6 @@ app.get('/sorted_teams', function(req, res){
  * endpoints for the API, and 5 others.
  */
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log('Sporting Events Application listening on port 3000!');
 });
